@@ -27,12 +27,15 @@ void down(int mas [4][4])
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (mas[i][j] == 0) {
-				if (i = 0) {
+				if (i != 0) {
+					swap(mas[i][j], mas[i-1][j]);
+					vivod(mas);
+					break;
+				}
+				else {
 					cout << "Error" << endl;
 					break;
 				}
-				swap(mas[i][j], mas[i - 1][j]);
-				vivod(mas);
 			}
 		}
 	}
@@ -43,12 +46,15 @@ void up(int mas[4][4])
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (mas[i][j] == 0) {
-				if (i = 3) {
+				if (i != 3) {
+					swap(mas[i][j], mas[i + 1][j]);
+					vivod(mas);					
+					break;
+				}
+				else {
 					cout << "Error" << endl;
 					break;
 				}
-				swap(mas[i][j], mas[i + 1][j]);
-				vivod(mas);
 			}
 		}
 	}
@@ -58,13 +64,14 @@ void left (int mas[4][4])
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (mas[i][j] == 0) {
-				if (j = 3) {
-					cout << "Error" << endl;
-				break;
+				if (j != 3) {
+					swap(mas[i][j], mas[i][j+1]);
+					vivod(mas);
+					break;
 				}
 				else {
-					swap(mas[i][j], mas[i][j + 1]);
-					vivod(mas);
+					cout << "Error" << endl;
+					break;
 				}
 			}
 		}
@@ -75,12 +82,16 @@ void right(int mas[4][4])
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (mas[i][j] == 0) {
-				if (j = 0) {
+				if (j != 0) {
+					swap(mas[i][j], mas[i][j-1]);
+					vivod(mas);
 					cout << "Error" << endl;
 					break;
 				}
-				swap(mas[i][j], mas[i][j - 1]);
-				vivod(mas);
+				else {
+					cout << "Error" << endl;
+					break;
+				}
 			}
 		}
 	}
@@ -96,26 +107,23 @@ int main()
 	vivod(mas);
 
 	char op;
-	cin >> op;
-	while (true) {
-		switch (op) {
-		case 'j': {
+	while (cin >> op) {
+		if(op=='j') {
 			down(mas);
-
 		}
-		case 'k': {
+		if(op=='k') {
 			up(mas);
 		}
-		case 'h': {
+		if(op=='h') {
 			left(mas);
 		}
-		case 'l': {
+		if( op=='l'){
 			right(mas);
 		}
-		case 'q': {
+		if(op=='q') {
 			cout << "Game over" << endl;
 			return -1;
 		}
 	}
-	return 0;
+		return 0;
 }
