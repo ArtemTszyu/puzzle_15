@@ -5,7 +5,7 @@
 using namespace std;
 
 void vivod(int mas[4][4])
-{
+{ 
 	for (int i = 0; i < 4; i++) {
 		cout << " +----+----+----+----+" << endl;
 		for (int j = 0; j < 4; j++) {
@@ -28,7 +28,7 @@ void down(int mas [4][4])
 		for (int j = 0; j < 4; j++) {
 			if (mas[i][j] == 0) {
 				if (i != 0) {
-					swap(mas[i][j], mas[i-1][j]);
+					swap(mas[i][j], mas[i - 1][j]);
 					vivod(mas);
 					break;
 				}
@@ -43,16 +43,21 @@ void down(int mas [4][4])
 
 void up(int mas[4][4]) 
 {
+	int ex = 0;
 	for (int i = 0; i < 4; i++) {
+		if (ex == 1) { break; }
 		for (int j = 0; j < 4; j++) {
+			if (ex == 1) { break; }
 			if (mas[i][j] == 0) {
 				if (i != 3) {
-					swap(mas[i][j], mas[i + 1][j]);
-					vivod(mas);					
+					swap(mas[i + 1][j], mas[i][j]);
+					vivod(mas);
+					ex = 1;
 					break;
 				}
 				else {
 					cout << "Error" << endl;
+					ex = 1;
 					break;
 				}
 			}
@@ -85,7 +90,6 @@ void right(int mas[4][4])
 				if (j != 0) {
 					swap(mas[i][j], mas[i][j-1]);
 					vivod(mas);
-					cout << "Error" << endl;
 					break;
 				}
 				else {
@@ -108,21 +112,26 @@ int main()
 
 	char op;
 	while (cin >> op) {
-		if(op=='j') {
+
+		if (op == 'j') {
 			down(mas);
 		}
-		if(op=='k') {
+		if (op == 'k') {
 			up(mas);
 		}
-		if(op=='h') {
+		if (op == 'h') {
 			left(mas);
 		}
-		if( op=='l'){
+		if (op == 'l') {
 			right(mas);
 		}
-		if(op=='q') {
+		if (op == 'q') {
 			cout << "Game over" << endl;
 			return -1;
+		}
+		if (op != 'q' && op != 'h' && op != 'j' && op != 'k' && op != 'l')
+		{
+			cout << "Error op" << endl;
 		}
 	}
 		return 0;
