@@ -2,9 +2,8 @@
 #include <utility>
 #include <ctime>
 
-
 using namespace std;
-/*
+
 void zadanie_mas(int mas[4][4])
 {
 	for (int k = 0; k < 16;) {
@@ -16,9 +15,9 @@ void zadanie_mas(int mas[4][4])
 		}
 	}
 }
-*/
+
 void vivod(int mas[4][4])
-{ 
+{
 	for (int i = 0; i < 4; i++) {
 		cout << " +----+----+----+----+" << endl;
 		for (int j = 0; j < 4; j++) {
@@ -35,9 +34,10 @@ void vivod(int mas[4][4])
 	}
 	cout << " +----+----+----+----+" << endl;
 }
-bool proverka_win(int mas[4][4]) 
+
+bool proverka_win(int mas[4][4])
 {
-	int k=0;
+	int k = 0;
 	for (int i = 0; i < 4; i++) {
 		if (k == 14) { break; }
 		for (int j = 0; j < 4; j++) {
@@ -54,7 +54,7 @@ bool proverka_win(int mas[4][4])
 				if (mas[i][j] < mas[i + 1][0]) {
 					k++;
 				}
-				else {	
+				else {
 					return false;
 				}
 			}
@@ -63,9 +63,7 @@ bool proverka_win(int mas[4][4])
 	return true;
 }
 
-
-
-void down(int mas [4][4]) 
+void down(int mas[4][4])
 {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
@@ -84,7 +82,7 @@ void down(int mas [4][4])
 	}
 }
 
-void up(int mas[4][4]) 
+void up(int mas[4][4])
 {
 	int ex = 0;
 	for (int i = 0; i < 4; i++) {
@@ -107,13 +105,14 @@ void up(int mas[4][4])
 		}
 	}
 }
-void left (int mas[4][4]) 
+
+void left(int mas[4][4])
 {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (mas[i][j] == 0) {
 				if (j != 3) {
-					swap(mas[i][j], mas[i][j+1]);
+					swap(mas[i][j], mas[i][j + 1]);
 					vivod(mas);
 					break;
 				}
@@ -125,13 +124,14 @@ void left (int mas[4][4])
 		}
 	}
 }
+
 void right(int mas[4][4])
 {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (mas[i][j] == 0) {
 				if (j != 0) {
-					swap(mas[i][j], mas[i][j-1]);
+					swap(mas[i][j], mas[i][j - 1]);
 					vivod(mas);
 					break;
 				}
@@ -147,14 +147,13 @@ void right(int mas[4][4])
 int main()
 {
 	srand(time(NULL));
-	int mas[4][4] = { { 1, 2, 3, 4 },
-	{ 5, 6, 7, 8 },
-	{ 9, 10, 11, 12 },
-	{ 13, 14, 0, 15 }
+	int mas[4][4] = { { 0, 0, 0, 0 },
+	{ 0, 0, 0, 0 },
+	{ 0, 0, 0, 0 },
+	{ 0, 0, 0, 0 }
 	};
-	//zadanie_mas(mas);
+	zadanie_mas(mas);
 	vivod(mas);
-
 	char op;
 	while (cin >> op) {
 		if (op == 'j') {
@@ -198,6 +197,5 @@ int main()
 		cout << "Perfect!" << endl;
 		return -1;
 	}
-	
-		return 0;
+	return 0;
 }
