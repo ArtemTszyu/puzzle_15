@@ -1,9 +1,22 @@
 #include <iostream>
 #include <utility>
+#include <ctime>
 
 
 using namespace std;
-
+/*
+void zadanie_mas(int mas[4][4])
+{
+	for (int k = 0; k < 16;) {
+		int	i = rand() % 4;
+		int j = rand() % 4;
+		if (mas[i][j] == 0) {
+			mas[i][j] = k;
+			k++;
+		}
+	}
+}
+*/
 void vivod(int mas[4][4])
 { 
 	for (int i = 0; i < 4; i++) {
@@ -22,6 +35,36 @@ void vivod(int mas[4][4])
 	}
 	cout << " +----+----+----+----+" << endl;
 }
+bool proverka_win(int mas[4][4]) 
+{
+	int k=0;
+	for (int i = 0; i < 4; i++) {
+		if (k == 14) { break; }
+		for (int j = 0; j < 4; j++) {
+			if (k == 14) { break; }
+			if (j < 3) {
+				if (mas[i][j] < mas[i][j + 1]) {
+					k++;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				if (mas[i][j] < mas[i + 1][0]) {
+					k++;
+				}
+				else {	
+					return false;
+				}
+			}
+		}
+	}
+	return true;
+}
+
+
+
 void down(int mas [4][4]) 
 {
 	for (int i = 0; i < 4; i++) {
@@ -103,27 +146,44 @@ void right(int mas[4][4])
 
 int main()
 {
-	int mas[4][4] = { { 13, 14, 15, 0 },
-	{ 12, 11, 10, 9 },
+	srand(time(NULL));
+	int mas[4][4] = { { 1, 2, 3, 4 },
 	{ 5, 6, 7, 8 },
-	{ 4, 3, 2, 1 }
+	{ 9, 10, 11, 12 },
+	{ 13, 14, 0, 15 }
 	};
+	//zadanie_mas(mas);
 	vivod(mas);
 
 	char op;
 	while (cin >> op) {
-
 		if (op == 'j') {
 			down(mas);
+			if (proverka_win(mas)) {
+				cout << "Perfect!" << endl;
+				return -1;
+			}
 		}
 		if (op == 'k') {
 			up(mas);
+			if (proverka_win(mas)) {
+				cout << "Perfect!" << endl;
+				return -1;
+			}
 		}
 		if (op == 'h') {
 			left(mas);
+			if (proverka_win(mas)) {
+				cout << "Perfect!" << endl;
+				return -1;
+			}
 		}
 		if (op == 'l') {
 			right(mas);
+			if (proverka_win(mas)) {
+				cout << "Perfect!" << endl;
+				return -1;
+			}
 		}
 		if (op == 'q') {
 			cout << "Game over" << endl;
@@ -134,5 +194,10 @@ int main()
 			cout << "Error op" << endl;
 		}
 	}
+	if (proverka_win(mas)) {
+		cout << "Perfect!" << endl;
+		return -1;
+	}
+	
 		return 0;
 }
