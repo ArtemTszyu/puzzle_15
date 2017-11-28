@@ -7,7 +7,7 @@ using namespace std;
 void zadanie_mas(int mas[4][4])
 {
 	for (int k = 0; k < 16;) {
-		int	i = rand() % 4;
+		int i = rand() % 4;
 		int j = rand() % 4;
 		if (mas[i][j] == 0) {
 			mas[i][j] = k;
